@@ -1,49 +1,3 @@
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-
-<script>
-
-                            var ValidLogins = {
-                            "user1": "258540d92fef6067f6c3441fdb07bdd18dff5de9c15ee0bba5d4a07db9e8585b",
-                            "user2": "49c4cfad36d32a7db21cc2db84d5b5f25a777f0106faacc5386b89b84b7a9911"
-                            };
-
-                            // Function to get the value of a cookie by name
-                            function getCookie(cookieName) {
-                            var name = cookieName + "=";
-                            var decodedCookie = decodeURIComponent(document.cookie);
-                            var cookieArray = decodedCookie.split(';');
-                            for(var i = 0; i < cookieArray.length; i++) {
-                            var cookie = cookieArray[i];
-                            while (cookie.charAt(0) == ' ') {
-                            cookie = cookie.substring(1);
-                            }
-                            if (cookie.indexOf(name) == 0) {
-                            return cookie.substring(name.length, cookie.length);
-                            }
-                            }
-                            return null;
-                            }
-
-                            // Get the value of the specified cookie
-                            var cookieValue =  CryptoJS.SHA256(getCookie('Security')).toString();;
-
-                            // Check if the value of the cookie exists in the table
-                            if (cookieValue !== null && ValidLogins.includes(cookieValue)) {
-                            console.log('Value of the cookie is in the table:', cookieValue);
-                            } else {
-                            console.log('Either the cookie with the specified name is not found or its value is not in the table.');
-                            }
-
-
-
-
-
-</script>
-
-
 <!DOCTYPE html>
 <html>
 
@@ -61,17 +15,50 @@
             min-height: 100vh;
             position: relative; /* Set body to relative positioning */
         }
-
-
-       
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        var ValidLogins = {
+            "user1": "258540d92fef6067f6c3441fdb07bdd18dff5de9c15ee0bba5d4a07db9e8585b",
+            "user2": "49c4cfad36d32a7db21cc2db84d5b5f25a777f0106faacc5386b89b84b7a9911"
+        };
+
+        // Function to get the value of a cookie by name
+        function getCookie(cookieName) {
+            var name = cookieName + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var cookieArray = decodedCookie.split(';');
+            for (var i = 0; i < cookieArray.length; i++) {
+                var cookie = cookieArray[i];
+                while (cookie.charAt(0) == ' ') {
+                    cookie = cookie.substring(1);
+                }
+                if (cookie.indexOf(name) == 0) {
+                    return cookie.substring(name.length, cookie.length);
+                }
+            }
+            return null;
+        }
+
+        // Get the value of the specified cookie and hash it
+        var cookieValue = getCookie('Security');
+        if (cookieValue !== null) {
+            var hashedCookieValue = CryptoJS.SHA256(cookieValue).toString();
+
+            // Check if the value of the cookie exists in the table
+            if (ValidLogins.hasOwnProperty(hashedCookieValue)) {
+                console.log('Value of the cookie is in the table:', hashedCookieValue);
+            } else {
+                console.log('The value of the cookie is not in the table.');
+            }
+        } else {
+            console.log('Cookie with the specified name is not found.');
+        }
+    </script>
 </head>
 
 <body>
 
-    
 </body>
-
-    
 
 </html>
