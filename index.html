@@ -171,7 +171,20 @@
                 document.getElementById("Login").style.borderColor = "rgb(0,255,0)"
 
                 
-                document.cookie = "cookieName=cookieValue; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+                // Set variables for cookie name, value, and expiration time
+                var cookieName = "Security";
+                var cookieValue = username + password
+                var expirationHours = 24; // Expiration time in hours
+
+                // Get the current date/time
+                var currentDate = new Date();
+
+                // Calculate the expiration date/time (current time + specified hours)
+                var expirationDate = new Date(currentDate.getTime() + (expirationHours * 60 * 60 * 1000)); // Add specified hours in milliseconds
+
+                // Set the cookie with the calculated expiration date
+                document.cookie = cookieName + "=" + cookieValue + "; expires=" + expirationDate.toUTCString() + "; path=/";
+
 
 
             }, 500);
