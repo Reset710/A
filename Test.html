@@ -1,3 +1,36 @@
+<script>
+
+function checkCookie(cookieName) {
+    // Get all cookies associated with the document
+    var cookies = document.cookie.split(';');
+
+    // Loop through each cookie to check if the desired cookie exists
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+
+        // Check if the cookie starts with the provided cookieName
+        if (cookie.indexOf(cookieName + '=') === 0) {
+            // Cookie found
+            return true;
+        }
+    }
+
+    // Cookie not found
+    return false;
+}
+
+// Example usage:
+var cookieExists = checkCookie('Security');
+if (cookieExists) {
+    console.log('Cookie exists!');
+} else {
+    console.log('Cookie does not exist.');
+}
+
+
+</script>
+
+
 <!DOCTYPE html>
 <html>
 
