@@ -45,15 +45,18 @@
         if (cookieValue !== null) {
             var hashedCookieValue = CryptoJS.SHA256(cookieValue).toString();
 
-            // Check if the value of the cookie exists in the table
-            if (ValidLogins.hasOwnProperty(hashedCookieValue)) {
-                console.log('Value of the cookie is in the table:', hashedCookieValue);
-            } else {
-                console.log('The value of the cookie is not in the table.');
-                console.log(hashedCookieValue)
-            }
-        } else {
-            console.log('Cookie with the specified name is not found.');
+
+                for (var user in ValidLogins) {
+                if (ValidLogins[user] === hashedCookieValue) {
+               
+                    console.log("Valid")
+
+                }
+                }
+
+
+
+
         }
     </script>
 </head>
@@ -63,3 +66,8 @@
 </body>
 
 </html>
+
+
+
+
+
