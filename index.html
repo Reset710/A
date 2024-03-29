@@ -183,8 +183,12 @@
 
                 // Set the cookie with the calculated expiration date
                 document.cookie = cookieName + "=" + cookieValue + "; expires=" + expirationDate.toUTCString() + "; path=/";
+                
+                setTimeout(function() {
 
+                window.location.href = "https://reset710.github.io/A/Test.html";
 
+             }, 500);
 
             }, 500);
 
